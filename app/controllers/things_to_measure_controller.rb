@@ -1,11 +1,13 @@
 class ThingsToMeasureController < ApplicationController
+  before_action :verify_token, only: %i[index create]
+
   def index
     @things_to_measures = ThingsToMeasure.all
     render :all, status: :ok
   end
 
   def create
-    @things_to_measure = ThingsToMeasure.new(t_t_m_params)
+    @things_to_measure = @current_user.things_to_measure.new(t_t_m_params)
     if @things_to_measure.save
       render :create, status: :created
     else

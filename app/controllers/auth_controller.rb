@@ -1,5 +1,5 @@
 class AuthController < ApplicationController
-  before_action :set_user, only: [:create]
+  before_action :set_user, only: %i[create]
 
   def create
     if @user.valid_password?(params[:password])

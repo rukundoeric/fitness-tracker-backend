@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :verify_token, only: [:show]
+  before_action :verify_token, only: %i[show]
 
   def show
     @user = User.find(params[:id])
