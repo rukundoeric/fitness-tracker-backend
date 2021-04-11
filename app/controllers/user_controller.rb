@@ -4,8 +4,9 @@ class UserController < ApplicationController
   def show
     @user = User.find(params[:id])
     render :show, status: :ok
-  rescue StandardError
-    render :not_found, status: :not_found
+  rescue StandardError => e
+    @error = e
+    render :error, status: :not_found
   end
 
   def create
@@ -14,13 +15,14 @@ class UserController < ApplicationController
       @token = token(@user)
       render :create, status: :created
     else
-      render :not_save, status: :unprocessable_entity
+      @error = @user.errors
+      render :error, status: :unprocessable_entity
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:photo, :name, :email, :password)
   end
 end

@@ -15,7 +15,8 @@ class MeasurementController < ApplicationController
     if @measurement.save
       render :create, status: :created
     else
-      render :not_save, status: :unprocessable_entity
+      @error = @measurement.errors
+      render :error, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +31,8 @@ class MeasurementController < ApplicationController
 
   def set_measurement
     @measurement = Measurement.find(params[:id])
-  rescue StandardError
+  rescue StandardError => e
+    @error = e
     render :not_found, status: :not_found
   end
 

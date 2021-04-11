@@ -12,7 +12,8 @@ class ThingsToMeasureController < ApplicationController
     if @things_to_measure.save
       render :create, status: :created
     else
-      render :not_save, status: :unprocessable_entity
+      @error = @things_to_measure.errors
+      render :error, status: :unprocessable_entity
     end
   end
 
@@ -25,8 +26,9 @@ class ThingsToMeasureController < ApplicationController
 
   def set_t_t_measure
     @things_to_measure = Measurement.find(params[:id])
-  rescue StandardError
-    render :not_found, status: :not_found
+  rescue StandardError => e
+    @error = e
+    render :error, status: :not_found
   end
 
   def t_t_m_params

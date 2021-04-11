@@ -14,6 +14,6 @@ class AuthController < ApplicationController
 
   def set_user
     @user = User.find_by(email: params[:email])
-    render :not_found, status: :not_found unless @user
+    render :error, status: :not_found unless @user
   end
 end

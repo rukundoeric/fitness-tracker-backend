@@ -16,8 +16,9 @@ class ApplicationController < ActionController::API
       true,
       { algorithm: 'HS256' }
     )[0]['user_id']
-  rescue StandardError
-    head(:unauthorized)
+  rescue StandardError => e
+    @error = e
+    render :unauthorized, status: :unauthorized
   end
 
   def current_user
