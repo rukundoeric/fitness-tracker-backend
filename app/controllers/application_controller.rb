@@ -20,6 +20,10 @@ class ApplicationController < ActionController::API
     head(:unauthorized)
   end
 
+  def current_user
+    User.find(@current_user)
+  end
+
   private
 
   def bearer_token
