@@ -10,8 +10,12 @@ class ApplicationController < ActionController::API
   end
 
   def verify_token
-    res = JWT.decode bearer_token, Rails.application.secrets.secret_key_base, true, { algorithm: 'HS256' }
-    @current_user = res[0]['user_id']
+    @current_user = JWT.decode(
+      bearer_token,
+      Rails.application.secrets.secret_key_base,
+      true,
+      { algorithm: 'HS256' }
+    )[0]['user_id']
   rescue StandardError
     head(:unauthorized)
   end

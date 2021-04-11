@@ -3,21 +3,18 @@ class UserController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user
-      render :show, status: :ok
-    else
-      head(:not_found)
-    end
+    render :show, status: :ok
+  rescue StandardError
+    render :not_found, status: :not_found
   end
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       @token = token(@user)
       render :create, status: :created
     else
-      head(:unprocessable_entity)
+      render :not_save, status: :unprocessable_entity
     end
   end
 

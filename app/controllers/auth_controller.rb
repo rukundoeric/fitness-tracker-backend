@@ -6,7 +6,7 @@ class AuthController < ApplicationController
       @token = token(@user)
       render :create, status: :ok
     else
-      head(:bad_request)
+      render :invalid_credentials, status: :bad_request
     end
   end
 
@@ -14,6 +14,6 @@ class AuthController < ApplicationController
 
   def set_user
     @user = User.find_by(email: params[:email])
-    head(:not_found) unless @user
+    render :not_found, status: :not_found unless @user
   end
 end
