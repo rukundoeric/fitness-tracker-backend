@@ -1,10 +1,10 @@
 json.data do
   json.user do
     json.call(
-      @things_to_measure,
+      @measurement,
       :id,
-      :name,
-      :user_id
+      :value,
+      :things_to_measure_id
     )
   end
 end

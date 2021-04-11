@@ -5,6 +5,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, length: { minimum: 6 }
   validates :password, presence: true, length: { minimum: 8 }
 
+  scope :eager_loading, -> { includes(:measurements, :things_to_measures) }
+
   def valid_password?(pwd)
     password == pwd
   end

@@ -1,9 +1,12 @@
 class MeasurementController < ApplicationController
-  before_action :verify_token, only: %i[index create show]
+  before_action :verify_token, only: %i[index create show destroy]
   before_action :set_measurement, only: %i[show destroy]
 
   def index
-    @measurements = Measurement.all
+    @measurements = current_user
+      .measurements
+      .eager_loading
+      .group_by { |m| m.updated_at.beginning_of_day }
     render :all, status: :ok
   end
 
@@ -32,6 +35,6 @@ class MeasurementController < ApplicationController
   end
 
   def m_params
-    params.require(:things_to_measure).permit(:value, :things_to_measure_id)
+    params.require(:measurement).permit(:value, :things_to_measure_id)
   end
 end

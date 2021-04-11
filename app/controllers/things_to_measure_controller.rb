@@ -3,7 +3,7 @@ class ThingsToMeasureController < ApplicationController
   before_action :set_t_t_measure, only: %i[destroy]
 
   def index
-    @things_to_measures = ThingsToMeasure.all
+    @things_to_measures = ThingsToMeasure.all.eager_loading
     render :all, status: :ok
   end
 
