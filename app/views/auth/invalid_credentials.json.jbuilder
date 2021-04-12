@@ -1,3 +1,5 @@
 json.data do
-  json.message 'Incorrect password!'
+  json.error do
+    json.message 'Incorrect password!'
+  end  
 end

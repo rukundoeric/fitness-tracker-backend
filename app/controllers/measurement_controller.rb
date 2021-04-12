@@ -7,33 +7,33 @@ class MeasurementController < ApplicationController
       .measurements
       .eager_loading
       .group_by { |m| m.updated_at.beginning_of_day }
-    render :all, status: :ok
+    render :all, formats: :json, status: :ok
   end
 
   def create
     @measurement = current_user.measurements.new(m_params)
     if @measurement.save
-      render :create, status: :created
+      render :create, formats: :json, status: :created
     else
       @error = @measurement.errors
-      render :error, status: :unprocessable_entity
+      render :error, formats: :json, status: :unprocessable_entity
     end
   end
 
   def show
-    render :show, status: :ok
+    render :show, formats: :json, status: :ok
   end
 
   def destroy
     @measurement.destroy
-    render :destroy, status: :ok
+    render :destroy, formats: :json, status: :ok
   end
 
   def set_measurement
     @measurement = Measurement.find(params[:id])
   rescue StandardError => e
     @error = e
-    render :not_found, status: :not_found
+    render :not_found, formats: :json, status: :not_found
   end
 
   def m_params

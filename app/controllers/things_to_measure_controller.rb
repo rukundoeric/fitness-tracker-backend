@@ -5,22 +5,22 @@ class ThingsToMeasureController < ApplicationController
 
   def index
     @things_to_measures = ThingsToMeasure.all.eager_loading
-    render :all, status: :ok
+    render :all, formats: :json, status: :ok
   end
 
   def create
     @things_to_measure = current_user.things_to_measures.new(t_t_m_params)
     if @things_to_measure.save
-      render :create, status: :created
+      render :create, formats: :json, status: :created
     else
       @error = @things_to_measure.errors
-      render :error, status: :unprocessable_entity
+      render :error, formats: :json, status: :unprocessable_entity
     end
   end
 
   def destroy
     @things_to_measure.destroy
-    render :destroy, status: :ok
+    render :destroy, formats: :json, status: :ok
   end
 
   private 
@@ -29,7 +29,7 @@ class ThingsToMeasureController < ApplicationController
     @things_to_measure = Measurement.find(params[:id])
   rescue StandardError => e
     @error = e
-    render :error, status: :not_found
+    render :error, formats: :json, status: :not_found
   end
 
   def t_t_m_params

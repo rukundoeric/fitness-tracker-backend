@@ -4,25 +4,25 @@ class UserController < ApplicationController
 
   def index
     @users = User.all.select(:id, :photo, :name, :email, :role, :created_at) 
-    render :all, status: :ok
+    render :all, formats: :json, status: :ok
   end
 
   def show
     @user = User.find(params[:id])
-    render :show, status: :ok
+    render :show, formats: :json, status: :ok
   rescue StandardError => e
     @error = e
-    render :error, status: :not_found
+    render :error, formats: :json, status: :not_found
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       @token = token(@user)
-      render :create, status: :created
+      render :create, formats: :json, status: :created
     else
       @error = @user.errors
-      render :error, status: :unprocessable_entity
+      render :error, formats: :json, status: :unprocessable_entity
     end
   end
 

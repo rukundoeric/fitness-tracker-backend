@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   include ActionView::Rendering
+  include ActionController::MimeResponds
 
   def token(user)
     JWT.encode(
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::API
     )[0]['user_id']
   rescue StandardError => e
     @error = e
-    render :unauthorized, status: :unauthorized
+    render :unauthorized, formats: :json, status: :unauthorized
   end
 
   def current_user
