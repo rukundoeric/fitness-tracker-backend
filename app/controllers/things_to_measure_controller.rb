@@ -1,6 +1,7 @@
 class ThingsToMeasureController < ApplicationController
   before_action :verify_token, only: %i[index create]
   before_action :set_t_t_measure, only: %i[destroy]
+  before_action :check_is_admin, only: %i[create]
 
   def index
     @things_to_measures = ThingsToMeasure.all.eager_loading
@@ -23,6 +24,12 @@ class ThingsToMeasureController < ApplicationController
   end
 
   private
+
+  def check_is_admin
+    if !current_user.is_admin?
+      render :no_access, status: :forbidden
+    end
+  end  
 
   def set_t_t_measure
     @things_to_measure = Measurement.find(params[:id])

@@ -1,3 +1,5 @@
 json.data do
-  json.message 'User not found!'
+  json.error do
+    json.message 'User not found!'
+  end
 end

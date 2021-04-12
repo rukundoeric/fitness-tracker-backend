@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_04_11_081212) do
   create_table "users", force: :cascade do |t|
     t.string "photo"
     t.string "name"
+    t.string "role", default: "user"
     t.string "email"
     t.string "password"
     t.datetime "created_at", precision: 6, null: false
