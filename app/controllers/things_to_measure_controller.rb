@@ -23,13 +23,7 @@ class ThingsToMeasureController < ApplicationController
     render :destroy, status: :ok
   end
 
-  private
-
-  def check_is_admin
-    if !current_user.is_admin?
-      render :no_access, status: :forbidden
-    end
-  end  
+  private 
 
   def set_t_t_measure
     @things_to_measure = Measurement.find(params[:id])

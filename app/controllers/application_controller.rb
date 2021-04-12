@@ -25,6 +25,12 @@ class ApplicationController < ActionController::API
     User.find(@current_user)
   end
 
+  def check_is_admin
+    if !current_user.is_admin?
+      render :no_access, status: :forbidden
+    end
+  end
+
   private
 
   def bearer_token
