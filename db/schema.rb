@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_04_11_081212) do
   end
 
   create_table "things_to_measures", force: :cascade do |t|
+    t.string "icon", default: "default"
     t.string "name"
     t.string "unit"
     t.integer "user_id"
