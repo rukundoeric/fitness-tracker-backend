@@ -28,7 +28,7 @@ class ApplicationController < ActionController::API
 
   def check_is_admin
     if !current_user.is_admin?
-      render :no_access, status: :forbidden
+      render :no_access, formats: :json, status: :forbidden
     end
   end
 
