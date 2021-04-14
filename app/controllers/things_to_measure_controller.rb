@@ -1,6 +1,6 @@
 class ThingsToMeasureController < ApplicationController
-  before_action :verify_token, only: %i[index create]
-  before_action :set_t_t_measure, only: %i[destroy]
+  before_action :verify_token, only: %i[index create show]
+  before_action :set_t_t_measure, only: %i[destroy show]
   before_action :check_is_admin, only: %i[create]
 
   def index
@@ -9,30 +9,34 @@ class ThingsToMeasureController < ApplicationController
   end
 
   def create
-    @things_to_measure = current_user.things_to_measures.new(t_t_m_params)
-    if @things_to_measure.save
+    @thing_to_measure = current_user.things_to_measures.new(t_t_m_params)
+    if @thing_to_measure.save
       render :create, formats: :json, status: :created
     else
-      @error = @things_to_measure.errors
+      @error = @thing_to_measure.errors
       render :error, formats: :json, status: :unprocessable_entity
     end
   end
 
+  def show
+    render :show, formats: :json, status: :ok
+  end
+
   def destroy
-    @things_to_measure.destroy
+    @thing_to_measure.destroy
     render :destroy, formats: :json, status: :ok
   end
 
-  private 
+  private
 
   def set_t_t_measure
-    @things_to_measure = Measurement.find(params[:id])
+    @thing_to_measure = ThingsToMeasure.find(params[:id])
   rescue StandardError => e
     @error = e
     render :error, formats: :json, status: :not_found
   end
 
   def t_t_m_params
-    params.require(:things_to_measure).permit(:name, :unit)
+    params.require(:things_to_measure).permit(:icon, :name, :unit)
   end
 end
