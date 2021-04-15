@@ -35,8 +35,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'sqlite3', '~> 1.4'
   gem 'listen', '~> 3.3'
+  gem 'sqlite3', '~> 1.4'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
@@ -46,6 +46,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'jwt', '~> 2.2'
 
-gem "rack-cors", :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 
-gem "seed_dump", "~> 3.3"
+gem 'seed_dump', '~> 3.3'

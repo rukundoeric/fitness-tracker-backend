@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   scope :eager_loading, -> { includes(:measurements, :things_to_measures) }
 
-  def is_admin?
+  def admin?
     role == 'admin'
   end
 

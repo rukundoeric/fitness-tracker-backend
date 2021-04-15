@@ -1,9 +1,9 @@
 class UserController < ApplicationController
   before_action :verify_token, only: %i[index show]
-  before_action :check_is_admin, only: %i[index]  
+  before_action :check_is_admin, only: %i[index]
 
   def index
-    @users = User.all.select(:id, :photo, :name, :email, :role, :created_at) 
+    @users = User.all.select(:id, :photo, :name, :email, :role, :created_at)
     render :all, formats: :json, status: :ok
   end
 
