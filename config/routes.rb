@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :user, only: %i[index show update]
   resources :things_to_measure, only: %i[index create destroy show]
   resources :measurement, only: %i[index create show destroy]
+  resources :progress, only: %i[index]
 end

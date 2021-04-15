@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_081212) do
+ActiveRecord::Schema.define(version: 2021_04_15_102021) do
 
   create_table "measurements", force: :cascade do |t|
     t.string "value"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_04_11_081212) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "maxValue"
     t.index ["user_id"], name: "index_things_to_measures_on_user_id"
   end
 

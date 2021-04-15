@@ -3,5 +3,6 @@ class Measurement < ApplicationRecord
   belongs_to :things_to_measure
   validates :value, :user_id, :things_to_measure_id, presence: true
 
+  default_scope { order('created_at DESC') }
   scope :eager_loading, -> { includes(:user, :things_to_measure) }
 end

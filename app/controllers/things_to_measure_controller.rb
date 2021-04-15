@@ -37,6 +37,6 @@ class ThingsToMeasureController < ApplicationController
   end
 
   def t_t_m_params
-    params.require(:things_to_measure).permit(:icon, :name, :unit)
+    params.require(:things_to_measure).permit(:icon, :name, :maxValue, :unit)
   end
 end
