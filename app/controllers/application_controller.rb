@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
   def verify_token
     @current_user = JWT.decode(
       bearer_token,
-      Rails.application.secrets.secret_key_base,
+      ENV['TOKEN_SECRET'],
       true,
       { algorithm: 'HS256' }
     )[0]['user_id']
