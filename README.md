@@ -75,7 +75,6 @@ Do you want to improve your fitness? Then Fitness Tracker is the perfect answer 
 
 
 ### Run tests
-
 ```
     rpsec --format documentation
 ```
