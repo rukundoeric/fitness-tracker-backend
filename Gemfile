@@ -49,3 +49,5 @@ gem 'jwt', '~> 2.2'
 gem 'rack-cors', require: 'rack/cors'
 
 gem 'seed_dump', '~> 3.3'
+
+gem "dotenv-rails", "~> 2.7"
