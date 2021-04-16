@@ -8,20 +8,15 @@ env:
 jobs:
   rubocop:
     name: Rubocop
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ruby-version: ['3.0']
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
+      - uses: actions/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby-version }}
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          ruby-version: 3.0.x
       - name: Setup Rubocop
         run: |
-          gem install --no-document rubocop:'~>1.12.1' # https://docs.rubocop.org/en/stable/installation/
+          gem install --no-document rubocop:'~>0.85.0' # https://docs.rubocop.org/en/stable/installation/
           [ -f .rubocop.yml ] || wget https://raw.githubusercontent.com/microverseinc/linters-config/master/ror/.rubocop.yml
       - name: Rubocop Report
         run: rubocop --color
