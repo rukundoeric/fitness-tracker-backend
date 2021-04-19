@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_secure_password
   has_many :measurements
   has_many :things_to_measures
   validates :name, presence: true

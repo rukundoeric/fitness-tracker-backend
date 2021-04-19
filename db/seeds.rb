@@ -4,7 +4,7 @@ User.create!([
     name: "Admin",
     role: "admin",
     email: "admin@gmail.com",
-    password: ENV['ADMIN_PASSWORD']
+    password: 'admin@005'
   }
 ])
 

@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_102021) do
     t.string "name"
     t.string "role", default: "user"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
