@@ -7,7 +7,7 @@ class AuthController < ApplicationController
       @token = token(@user)
       render :create, formats: :json, status: :ok
     else
-      render :invalid_credentials, formats: :json, status: :bad_request
+      render :invalid_credentials, formats: :json, status: :unauthorized
     end
   end
 
