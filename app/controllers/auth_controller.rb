@@ -2,7 +2,8 @@ class AuthController < ApplicationController
   before_action :set_user, only: %i[create]
 
   def create
-    if @user.valid_password?(params[:password])
+    @token = token(@user)
+    if @user.authenticate(params[:password])
       @token = token(@user)
       render :create, formats: :json, status: :ok
     else

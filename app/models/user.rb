@@ -11,8 +11,4 @@ class User < ApplicationRecord
   def admin?
     role == 'admin'
   end
-
-  def valid_password?(pwd)
-    password == pwd
-  end
 end
