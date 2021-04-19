@@ -4,12 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
+# gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 # Use sqlite3 as the database for Active Record
-
-group :production do
-  gem 'pg'
-end
+gem 'pg'
+#  gem 'sqlite3'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -54,3 +52,5 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'seed_dump', '~> 3.3'
 
 gem 'dotenv-rails', '~> 2.7'
+
+gem 'yaml_db', '~> 0.7.0'

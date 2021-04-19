@@ -4,5 +4,7 @@ class Measurement < ApplicationRecord
   validates :value, :user_id, :things_to_measure_id, presence: true
 
   default_scope { order('created_at DESC') }
-  scope :eager_loading, -> { includes(:user, :things_to_measure) }
+  scope :with_user, -> { includes(:user, :things_to_measure) }
+  scope :group_by_t_name, -> { group_by { |m| m.things_to_measure.name } }
+  scope :group_by_day, -> { group_by { |m| m.updated_at.beginning_of_day } }
 end

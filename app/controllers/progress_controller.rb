@@ -4,8 +4,8 @@ class ProgressController < ApplicationController
   def index
     @measurements = current_user
       .measurements
-      .eager_loading
-      .group_by { |m| m.things_to_measure.name }
+      .with_user
+      .group_by_t_name
     render :all, formats: :json, status: :ok
   end
 end

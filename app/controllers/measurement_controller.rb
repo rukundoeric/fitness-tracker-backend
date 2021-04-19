@@ -5,8 +5,8 @@ class MeasurementController < ApplicationController
   def index
     @measurements = current_user
       .measurements
-      .eager_loading
-      .group_by { |m| m.updated_at.beginning_of_day }
+      .with_user
+      .group_by_day
     render :all, formats: :json, status: :ok
   end
 
