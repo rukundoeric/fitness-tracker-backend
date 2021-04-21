@@ -4,7 +4,7 @@ class ThingsToMeasureController < ApplicationController
   before_action :check_is_admin, only: %i[create]
 
   def index
-    @things_to_measures = ThingsToMeasure.all.eager_loading
+    @things_to_measures = ThingsToMeasure.all
     render :all, formats: :json, status: :ok
   end
 

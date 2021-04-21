@@ -3,7 +3,7 @@ class AuthController < ApplicationController
 
   def create
     @token = token(@user)
-    if @user.authenticate(params[:password])
+    if @user.password == params[:password]
       @token = token(@user)
       render :create, formats: :json, status: :ok
     else

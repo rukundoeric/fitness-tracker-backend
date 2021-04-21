@@ -3,10 +3,7 @@ class MeasurementController < ApplicationController
   before_action :set_measurement, only: %i[show destroy]
 
   def index
-    @measurements = current_user
-      .measurements
-      .with_user
-      .group_by_day
+    @measurements = current_user.measurements
     render :all, formats: :json, status: :ok
   end
 

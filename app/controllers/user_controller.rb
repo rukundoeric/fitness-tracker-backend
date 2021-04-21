@@ -3,7 +3,7 @@ class UserController < ApplicationController
   before_action :check_is_admin, only: %i[index]
 
   def index
-    @users = User.all.select(:id, :photo, :name, :email, :role, :created_at)
+    @users = User.all
     render :all, formats: :json, status: :ok
   end
 
