@@ -30,6 +30,10 @@ class ApplicationController < ActionController::API
     render :no_access, formats: :json, status: :forbidden unless current_user.admin?
   end
 
+  def sanitize(val)
+    ActionController::Base.helpers.sanitize(val)
+  end
+
   private
 
   def bearer_token

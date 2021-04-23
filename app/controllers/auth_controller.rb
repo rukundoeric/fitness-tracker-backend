@@ -1,9 +1,9 @@
 class AuthController < ApplicationController
-  before_action :set_user, only: %i[create]
+  before_action :sanitize_params, only: %i[create]
 
   def create
     @token = token(@user)
-    if @user.password == params[:password]
+    if @user.password == @password
       @token = token(@user)
       render :create, formats: :json, status: :ok
     else
@@ -13,8 +13,10 @@ class AuthController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find_by(email: params[:email])
+  def sanitize_params
+    email = sanitize params[:email]
+    @password = sanitize params[:password]
+    @user = User.find_by(email: email)
     render :not_found, formats: :json, status: :not_found unless @user
   end
 end
