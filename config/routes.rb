@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :auth, only: %i[create]
+  resources :user, only: %i[index show update create]
+  resources :things_to_measure, only: %i[index create destroy show]
+  resources :measurement, only: %i[index create show destroy]
+  resources :progress, only: %i[index]
 end
